@@ -1,6 +1,8 @@
-# $Id: test_manifest,v 1.1.1.1 2004/09/01 04:16:03 comdog Exp $
+# $Id: test_manifest,v 1.2 2005/03/12 04:01:10 comdog Exp $
 compile.t
 pod.t
+pod_coverage.t
 normalize_mac.t
 extract_oui_from_html.t
 parse_oui.t
+fetch_oui.t
