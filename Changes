@@ -1,4 +1,11 @@
-# $Id: Changes,v 1.6 2006/05/20 08:00:54 comdog Exp $
+# $Id: Changes,v 1.8 2006/05/25 09:00:52 comdog Exp $
+
+1.01 - Thu May 25 03:58:41 2006
+	* The last release forgot to bump the version number. There's no
+	need to upgrade since this only fixes a missing MANIFEST.
+
+0.24 - Thu May 25 03:31:33 2006
+	* MANIFEST was missing from diff. I've fixed that.
 
 0.24 - Sat May 20 02:59:48 2006
 	* Minor distro updates, kwalitee cleanups, and typo squashing.
