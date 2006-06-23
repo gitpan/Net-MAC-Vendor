@@ -1,4 +1,4 @@
-# $Id: README,v 1.1.1.1 2004/09/01 04:16:03 comdog Exp $
+# $Id: README,v 1.2 2006/06/23 13:29:32 comdog Exp $
 
 Install this module using the normal Perl module installation steps.
 
@@ -17,4 +17,11 @@ any other Perl module.
 
 	perldoc Net::MAC::Vendor
 	
+This distribution comes with a OUI data file in extras/, although I
+make no attempt to keep it up to date. Although the data should not
+change, it may not be complete. Although I use this for testing,
+you should probably get the latest version when you can.
+
+	http://standards.ieee.org/regauth/oui/oui.txt
+
 Feel free to send me feedback---brian d foy <bdfoy@cpan.org>
