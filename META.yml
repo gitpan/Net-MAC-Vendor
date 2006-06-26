@@ -1,10 +1,11 @@
 # http://module-build.sourceforge.net/META-spec.html
 #XXXXXXX This is a prototype!!!  It will change in the future!!! XXXXX#
 name:         Net-MAC-Vendor
-version:      1.13
+version:      1.15
 version_from: lib/Vendor.pm
 installdirs:  site
 requires:
+    LWP::Simple:                   0
     Test::More:                    0
 
 distribution_type: module
