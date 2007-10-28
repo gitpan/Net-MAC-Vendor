@@ -1,4 +1,7 @@
-# $Id: Changes,v 1.13 2007/01/10 04:35:37 comdog Exp $
+# $Id: Changes 2337 2007-10-28 01:38:00Z comdog $
+
+1.18 - Sat Oct 27 20:37:52 2007
+	* distro cleanups after moving from CVS to SVN
 
 1.17 - Tue Jan  9 22:35:52 2007
 	* updated copyright and license info

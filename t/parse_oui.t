@@ -1,4 +1,4 @@
-# $Id: parse_oui.t,v 1.1.1.1 2004/09/01 04:16:03 comdog Exp $
+# $Id: parse_oui.t 1334 2004-09-01 04:16:02Z comdog $
 
 use Test::More tests => 5;
 

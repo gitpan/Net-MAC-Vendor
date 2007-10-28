@@ -1,4 +1,4 @@
-# $Id: extract_oui_from_html.t,v 1.1.1.1 2004/09/01 04:16:03 comdog Exp $
+# $Id: extract_oui_from_html.t 1334 2004-09-01 04:16:02Z comdog $
 
 use Test::More tests => 2;
 

@@ -1,4 +1,4 @@
-# $Id: fetch_oui.t,v 1.5 2006/06/26 02:05:08 comdog Exp $
+# $Id: fetch_oui.t 1879 2006-06-26 02:05:08Z comdog $
 
 use Test::More tests => 12;
 

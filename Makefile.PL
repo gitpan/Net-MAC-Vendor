@@ -1,13 +1,15 @@
-# $Id: Makefile.PL,v 1.4 2007/01/10 04:35:06 comdog Exp $
+# $Id: Makefile.PL 2336 2007-10-28 01:37:07Z comdog $
 use ExtUtils::MakeMaker;
 
 eval "use Test::Manifest 1.14";
 
 WriteMakefile(
 	'NAME'	       => 'Net::MAC::Vendor',
+	'ABSTRACT'     => 'look up the network interface vendor by MAC',
 	'VERSION_FROM' => 'lib/Vendor.pm',
-	'LICENSE'       => 'perl',
-
+	'LICENSE'      => 'perl',
+	'AUTHOR'       => 'brian d foy <bdfoy@cpan.org>',
+	
 	'PREREQ_PM'    => { 
 		'Test::More'        => '0',
 		'LWP::Simple'       => '0',
