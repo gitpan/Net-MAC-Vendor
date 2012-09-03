@@ -1,8 +1,11 @@
-# $Id: test_manifest 1593 2005-03-12 04:01:43Z comdog $
 compile.t
 pod.t
 pod_coverage.t
 normalize_mac.t
+fetch_oui_from_ieee.t
 extract_oui_from_html.t
 parse_oui.t
 fetch_oui.t
+load_cache.t
+run.t
+rt79369.t

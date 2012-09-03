@@ -1,6 +1,4 @@
-# $Id: fetch_oui.t 1879 2006-06-26 02:05:08Z comdog $
-
-use Test::More tests => 12;
+use Test::More 0.98;
 
 use LWP::Simple qw(head);
 
@@ -8,6 +6,9 @@ use_ok( 'Net::MAC::Vendor' );
 
 my @oui = qw( 00-0D-93 );
 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+unlink( 'mac_oui.db' );
+ok( ! -e 'mac_oui.db', "Cache file has been unlinked" );
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -34,10 +35,11 @@ my $lines =
 	
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
 foreach my $oui ( @oui )
 	{
 	my $parsed = Net::MAC::Vendor::fetch_oui( $oui );
-
+	
 	foreach my $i ( 0 .. $#$parsed )
 		{
 		is( $parsed->[$i], $lines->[$i], "Line $i matches for $oui" );
@@ -54,18 +56,16 @@ require Cwd;
 require File::Spec;
 
 my $cwd  = Cwd::cwd();
-my $path = File::Spec->catfile( $cwd, "extras/oui-20060623.txt" );
+my $path = File::Spec->catfile( $cwd, "extras/oui-20080629.txt" );
 
 skip "Can't get path to data file [$path]", 4 unless -e $path;
 
 my $uri  = "file://" . $path;
 
-Net::MAC::Vendor::load_cache( $uri );
 
-SKIP: {
-	skip "No DBM::Deep", 1 unless eval "require DBM::Deep";
-	ok( -e 'mac_oui.db', "Cache file exists" );
-	}
+print STDERR "...Loading cache...\n";
+Net::MAC::Vendor::load_cache( $uri );
+print STDERR "...Cache loaded...\n";
 	
 my $lines =
 	[
@@ -75,16 +75,14 @@ my $lines =
 	'UNITED STATES',
 	];
 
-foreach my $oui ( @oui )
-	{
+foreach my $oui ( @oui ) {
 	my $parsed = Net::MAC::Vendor::fetch_oui_from_cache( $oui );
 
-	foreach my $i ( 0 .. $#$parsed )
-		{
+	foreach my $i ( 1 .. $#$parsed ) {
 		is( $parsed->[$i], $lines->[$i], "Line $i matches for $oui" );
 		}
 	}
 
-unlink( 'mac_oui.db' );
-ok( ! -e 'mac_oui.db', "Cache file has been unlinked" );
 }
+
+done_testing();

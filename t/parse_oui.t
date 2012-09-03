@@ -1,6 +1,4 @@
-# $Id: parse_oui.t 1334 2004-09-01 04:16:02Z comdog $
-
-use Test::More tests => 5;
+use Test::More 0.98;
 
 use_ok( 'Net::MAC::Vendor' );
 
@@ -32,3 +30,12 @@ foreach my $elem ( @oui )
 		is( $parsed->[$i], $elem->[1][$i], "Line $i matches" );
 		}
 	}
+
+
+{
+my $rc = Net::MAC::Vendor::parse_oui( '' );
+isa_ok( $rc, ref [], "Empty string returns empty array ref" );
+is( scalar @$rc, 0, "Empty string returns empty array ref" );
+}
+
+done_testing();
