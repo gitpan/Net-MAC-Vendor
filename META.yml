@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               Net-MAC-Vendor
-version:            1.1901
+version:            1.19_02
 abstract:           look up the network interface vendor by MAC
 author:
     - brian d foy <bdfoy@cpan.org>

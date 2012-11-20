@@ -1,7 +1,7 @@
-#!/usr/bin/perl
-
 package Net::MAC::Vendor;
 use strict;
+
+=encoding utf8
 
 =head1 NAME
 
@@ -63,7 +63,7 @@ use LWP::Simple qw(get);
 
 our $Cached = {};
 
-our $VERSION = 1.19_01;
+our $VERSION = '1.19_02';
 
 =item run( @macs )
 
