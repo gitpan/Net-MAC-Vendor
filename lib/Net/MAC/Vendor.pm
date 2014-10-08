@@ -63,7 +63,7 @@ use LWP::Simple qw(get);
 
 our $Cached = {};
 
-our $VERSION = '1.21';
+our $VERSION = '1.22';
 
 =item run( @macs )
 
@@ -85,11 +85,14 @@ sub run {
 
 	foreach my $arg ( @_ ) {
 		my $lines = lookup( $arg );
+		return unless defined $lines;
 
 		unshift @$lines, $arg;
 
 		print join "\n", @$lines, '';
 		}
+
+	return 1;
 	}
 
 =item lookup( MAC )
