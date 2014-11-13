@@ -59,11 +59,11 @@ __PACKAGE__->run( @ARGV ) unless caller;
 use Carp;
 use LWP::Simple qw(get);
 
-# http://standards.ieee.org/regauth/oui/oui.txt
+# https://standards.ieee.org/regauth/oui/oui.txt
 
 our $Cached = {};
 
-our $VERSION = '1.22';
+our $VERSION = '1.23';
 
 =item run( @macs )
 
@@ -197,7 +197,7 @@ MAC.
 sub fetch_oui_from_ieee {
 	my $mac = normalize_mac( shift );
 
-	my $html = get( "http://standards.ieee.org/cgi-bin/ouisearch?$mac" );
+	my $html = get( "https://standards.ieee.org/cgi-bin/ouisearch?$mac" );
 	unless( defined $html ) {
 		carp "Could not fetch data from the IEEE!";
 		return;
@@ -300,13 +300,13 @@ sub parse_oui {
 	return \@lines;
 	}
 
-=item load_cache( [ SOURCE ] )
+=item load_cache( [ SOURCE[, DEST ] ] )
 
 Downloads the current list of all OUIs, parses it with C<parse_oui()>,
 and stores it in C<$Cached> anonymous hash keyed by the OUIs (i.e.
 00-0D-93). The C<fetch_oui()> will use this cache if it exists.
 
-By default, this uses C<http://standards.ieee.org/regauth/oui/oui.txt>, 
+By default, this uses C<https://standards.ieee.org/regauth/oui/oui.txt>, 
 but given an argument, it tries to use that. To load from a local
 file, use the C<file://> scheme.
 
@@ -317,10 +317,15 @@ This previously used DBM::Deep if it was installed, but that was much
 too slow. Instead, if you want persistence, you can play with 
 C<$Net::MAC::Vendor::Cached> yourself.
 
+If you want to store the data fetched for later use, add a destination
+filename to the request. To fetch from the default location and store,
+specify C<undef> as source.
+
 =cut
 
 sub load_cache {
-	my $source = shift || "http://standards.ieee.org/regauth/oui/oui.txt";
+	my $source = shift || "https://standards.ieee.org/regauth/oui/oui.txt";
+	my $dest   = shift;
 
 	my $data = do {
 		if( -e $source ) { # local files
@@ -332,6 +337,16 @@ sub load_cache {
 			unless( defined $data ) {
 				carp "Could not read from '$source'";
 				return;
+				}
+
+			if ( $dest ) { # store cache
+				if ( open my $fh, '>', $dest ) {
+					print $fh $data;
+					close $fh;
+					} 
+				else { # notify on error, but continue
+					carp "Could not write to '$dest'";
+					}
 				}
 
 			$data;
